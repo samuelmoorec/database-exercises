@@ -31,4 +31,12 @@ WHERE CURRENT_DATE BETWEEN depMan.from_date AND depMan.to_date
 AND CURRENT_DATE BETWEEN sal.from_date AND sal.to_date
 ORDER BY Department_Name;
 
-SELECT
+SELECT CONCAT(emp.first_name,', ',emp.last_name) Employee_Name, dep.dept_name Department, CONCAT(man.first_name,', ',man.last_name) Manager
+FROM employees emp
+JOIN dept_emp depEm ON depEm.emp_no = emp.emp_no
+JOIN departments dep ON dep.dept_no = depEm.dept_no
+JOIN dept_manager depMan ON depMan.dept_no = dep.dept_no
+JOIN employees man ON man.emp_no = depMan.emp_no
+WHERE CURRENT_DATE BETWEEN depEm.from_date AND depEm.to_date
+AND CURRENT_DATE BETWEEN depMan.from_date AND depMan.to_date
+ORDER BY emp.first_name,emp.last_name;
