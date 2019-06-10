@@ -1,5 +1,12 @@
 USE employees;
 
+SELECT CONCAT(em.first_name,', ',em.last_name) Name, sal.salary Pay
+FROM employees em
+JOIN salaries sal ON sal.emp_no = em.emp_no
+ORDER BY sal.salary DESC
+LIMIT 1;
+
+
 SELECT CONCAT(em.first_name,', ',em.last_name) Department_Manager, depart.dept_name Department_Name
 FROM employees em
 JOIN dept_manager dm ON dm.emp_no = em.emp_no
